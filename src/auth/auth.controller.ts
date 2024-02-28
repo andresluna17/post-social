@@ -6,7 +6,6 @@ import {
   Controller,
   Post,
   UseGuards,
-  Get,
   HttpStatus,
   HttpCode,
 } from '@nestjs/common';
@@ -32,7 +31,7 @@ export class AuthController {
   }
 
   @Public()
-  @Get('/register')
+  @Post('/register')
   @HttpCode(HttpStatus.CREATED)
   async register(@Body() dto: CreateUserDto): Promise<Tokens> {
     return await this.authService.register(dto);

@@ -16,15 +16,15 @@ export class AuthService {
   //iniciar sesión
   async login(dto: AuthDto): Promise<Tokens> {
     const user = await this.userService.findOneByEmail(dto.email);
-
     if (!user) throw new ForbiddenException('Access Denied.');
 
-    const passwordMatches = await bcrypt.compare(dto.password, user.password);
-
+    const passwordMatches = await bcrypt.compareSync(
+      dto.password,
+      user.password,
+    );
     if (!passwordMatches) throw new ForbiddenException('Access Denied.');
 
     const tokens = await this.getTokens(user.id, user.email);
-
     const rtHash = await this.hashPassword(tokens.refresh_token);
 
     await this.userService.update(user.id, { hashdRt: rtHash });
@@ -56,6 +56,7 @@ export class AuthService {
 
   //Registro de usuario
   async register(dto: CreateUserDto): Promise<Tokens> {
+    dto.password = await this.hashPassword(dto.password);
     const user = await this.userService.create(dto);
 
     const tokens = await this.getTokens(user.id, user.email);
