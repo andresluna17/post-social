@@ -16,10 +16,11 @@ export class PostService {
   }
 
   async findPagination(page: number, size: number) {
-    const offset = page * size;
+    const offset = (page - 1) * size;
     const { count: total, rows: data } = await this.postModel.findAndCountAll({
       offset,
       limit: size,
+      order: [['creationDate', 'DESC']],
     });
 
     return { total, page, data };

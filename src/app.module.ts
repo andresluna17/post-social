@@ -13,13 +13,13 @@ import { PostModule } from './post/post.module';
     ConfigModule.forRoot(),
     AuthModule,
     UserModule,
+    PostModule,
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) =>
         dataBaseConfig(configService),
       inject: [ConfigService],
     }),
-    PostModule,
   ],
   controllers: [],
   providers: [

@@ -1,4 +1,4 @@
-import { CreationOptional, DataTypes, Optional } from 'sequelize';
+import { CreationOptional, Optional } from 'sequelize';
 import {
   AutoIncrement,
   BelongsTo,
@@ -45,7 +45,7 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> {
   @Column
   content: string;
 
-  @Column(DataTypes.INTEGER)
+  @Column({ defaultValue: 0, type: DataType.INTEGER })
   likes: number;
 
   @CreatedAt

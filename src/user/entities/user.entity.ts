@@ -27,7 +27,8 @@ interface UserAttributes {
   deletedAt: Date | null;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
+interface UserCreationAttributes
+  extends Optional<UserAttributes, 'id' | 'hashdRt'> {}
 
 @Table
 @DefaultScope(() => ({
