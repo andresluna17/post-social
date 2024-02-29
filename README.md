@@ -26,6 +26,10 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Testing
+
+[Deploy in ](https://post-social-back.onrender.com/) deploy in Host free(Render).
+
 ## Installation
 
 ```bash
