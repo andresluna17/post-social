@@ -49,8 +49,8 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   async refreshTokens(
     @GetCurrentUser('refreshToken') refreshToken: string,
-    @GetCurrentUserId() medicoId: number,
+    @GetCurrentUserId() userId: number,
   ) {
-    return await this.authService.refreshTokens(medicoId, refreshToken);
+    return await this.authService.refreshTokens(userId, refreshToken);
   }
 }

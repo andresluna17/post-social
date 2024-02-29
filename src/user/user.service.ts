@@ -11,7 +11,7 @@ export class UserService {
     private userModel: typeof User,
   ) {}
   create(createUserDto: CreateUserDto) {
-    return this.userModel.create({ ...createUserDto });
+    return this.userModel.create(createUserDto);
   }
 
   findAll() {
@@ -23,7 +23,10 @@ export class UserService {
   }
 
   findOneByEmail(email: string) {
-    return this.userModel.findOne({ where: { email } });
+    return this.userModel.findOne({
+      where: { email },
+      attributes: { include: ['email', 'password'] },
+    });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

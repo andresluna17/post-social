@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AccessTokenGuard } from './auth/guards/access-token.guard';
+import { PostModule } from './post/post.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AccessTokenGuard } from './auth/guards/access-token.guard';
         dataBaseConfig(configService),
       inject: [ConfigService],
     }),
+    PostModule,
   ],
   controllers: [],
   providers: [
